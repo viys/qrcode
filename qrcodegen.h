@@ -125,7 +125,12 @@ struct qrcodegen_Segment {
 	int bitLength;
 };
 
+typedef struct
+{
+	int (*qr_printf)(const char *str, ...);
+}QRCode_API;
 
+extern QRCode_API MyQRCode_API;
 
 /*---- Macro constants and functions ----*/
 

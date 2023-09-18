@@ -31,6 +31,11 @@
 #include <string.h>
 #include "qrcodegen.h"
 
+/*载入自己的pritnf函数*/
+QRCode_API MyQRCode_API = {
+	.qr_printf = printf,
+};
+
 char buff[100]={0};
 
 // The main application program.

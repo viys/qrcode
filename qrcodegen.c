@@ -1025,6 +1025,8 @@ static int numCharCountBits(enum qrcodegen_Mode mode, int version) {
 	}
 }
 
+
+
 /**
  * @brief 打印二维码
  * 
@@ -1036,11 +1038,11 @@ static void printQr(const uint8_t qrcode[])
 	int border = 1;
 	for (int y = -border; y < size + border; y++) {
 		for (int x = -border; x < size + border; x++) {
-			printf((qrcodegen_getModule(qrcode, x, y) ? "\e[5;40;1m  \e[0m" : "\e[5;47;1m  \e[0m"));
+			MyQRCode_API.qr_printf((qrcodegen_getModule(qrcode, x, y) ? "\e[5;40;1m  \e[0m" : "\e[5;47;1m  \e[0m"));
 		}
-		printf("\n");
+		MyQRCode_API.qr_printf("\r\n");
 	}
-	printf("\n");
+	MyQRCode_API.qr_printf("\r\n");
 }
 
 void doBasic(const char* text)
