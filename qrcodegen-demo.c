@@ -45,5 +45,6 @@ int main(void) {
 	printf("Please enter the string to be converted\r\n");
 	scanf("%s",buff);
 	doBasic((const char*)buff);
+	system("pause");
 	return EXIT_SUCCESS;
 }
