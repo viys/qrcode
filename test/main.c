@@ -36,15 +36,14 @@ char buff[100]={0};
 // The main application program.
 int main(void) {
 
-	printf("QRCode developers:viys\r\n");
-	printf("Please enter the string to be converted\r\n");
+	printf("QRCode developers:viys\n");
+	printf("Please enter the string to be converted\n");
 	scanf("%s",buff);
 
 	// 初始化二维码串口输出
 	qrcode_init(printf);
-	// // 打印二维码
+	// 打印二维码
 	qr_doBasic((const char*)buff);
 	
-	system("pause");
 	return EXIT_SUCCESS;
 }

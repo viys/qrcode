@@ -1,6 +1,8 @@
 QR Code generator library - C
 =============================
 
+https://z1eac6eifxs.feishu.cn/wiki/ZQZswgyoYijK58kriUgcMyHen6e?from=from_copylink
+
 
 Introduction
 ------------
@@ -38,15 +40,23 @@ Examples
 --------
 
 ```c
-/*载入自己的pritnf函数*/
-QRCode_API MyQRCode_API = {
-	.qr_printf = printf,
-};
+// 初始化二维码串口输出
+qrcode_init(printf);
+// 打印二维码
+qr_doBasic((const char*)buff);
 ```
 
 ```shell
-#build 
+#win
+gcc .\qrcodegen.c .\test\main.c -o .\test\qrcode.exe
+.\qecide.exe
 
+#unix
+mkdir test/build
+cd test/build
+cmake ..
+make
+.test
 ```
 
 More complete set of examples: https://github.com/nayuki/QR-Code-generator/blob/master/c/qrcodegen-demo.c .
