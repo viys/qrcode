@@ -125,6 +125,9 @@ static const int PENALTY_N2 =  3;
 static const int PENALTY_N3 = 40;
 static const int PENALTY_N4 = 10;
 
+static QRCode_API MyQRCode_API = {
+	.qr_printf = NULL,
+};
 
 
 /*---- High-level QR Code encoding functions ----*/
@@ -1025,6 +1028,15 @@ static int numCharCountBits(enum qrcodegen_Mode mode, int version) {
 	}
 }
 
+/**
+ * @brief 二维码库初始化, 主要初始化打印函数
+ * 
+ * @param qr_printf 
+ */
+void qrcode_init(int (*qr_printf)(const char *str, ...))
+{
+	MyQRCode_API.qr_printf = qr_printf;
+}
 
 
 /**
@@ -1036,6 +1048,11 @@ static void printQr(const uint8_t qrcode[])
 {
 	int size = qrcodegen_getSize(qrcode);
 	int border = 1;
+
+	if (MyQRCode_API.qr_printf == NULL) {
+		return;
+	}
+
 	for (int y = -border; y < size + border; y++) {
 		for (int x = -border; x < size + border; x++) {
 			MyQRCode_API.qr_printf((qrcodegen_getModule(qrcode, x, y) ? "\e[5;40;1m  \e[0m" : "\e[5;47;1m  \e[0m"));
@@ -1045,7 +1062,13 @@ static void printQr(const uint8_t qrcode[])
 	MyQRCode_API.qr_printf("\r\n");
 }
 
-void doBasic(const char* text)
+
+/**
+ * @brief 打印基础的二维码
+ * 
+ * @param text 
+ */
+void qr_doBasic(const char* text)
 {
 	enum qrcodegen_Ecc errCorLvl = qrcodegen_Ecc_LOW;  // Error correction level
 	
@@ -1057,7 +1080,6 @@ void doBasic(const char* text)
 	if (ok)
 		printQr(qrcode);
 }
-
 
 
 #undef LENGTH_OVERFLOW

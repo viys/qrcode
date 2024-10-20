@@ -130,8 +130,6 @@ typedef struct
 	int (*qr_printf)(const char *str, ...);
 }QRCode_API;
 
-extern QRCode_API MyQRCode_API;
-
 /*---- Macro constants and functions ----*/
 
 #define qrcodegen_VERSION_MIN   1  // The minimum version number supported in the QR Code Model 2 standard
@@ -389,7 +387,14 @@ bool qrcodegen_getModule(const uint8_t qrcode[], int x, int y);
  * 
  * @param text 二维码对应文字
  */
-void doBasic(const char* text);
+void qr_doBasic(const char* text);
+
+/**
+ * @brief 二维码串口输出初始化
+ * 
+ * @param qr_printf 
+ */
+void qrcode_init(int (*qr_printf)(const char *str, ...));
 
 #ifdef __cplusplus
 }

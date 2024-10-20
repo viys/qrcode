@@ -44,4 +44,9 @@ QRCode_API MyQRCode_API = {
 };
 ```
 
+```shell
+#build 
+
+```
+
 More complete set of examples: https://github.com/nayuki/QR-Code-generator/blob/master/c/qrcodegen-demo.c .

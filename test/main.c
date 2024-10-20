@@ -24,17 +24,12 @@
  *   Software.
  */
 
-#include <stdbool.h>
-#include <stddef.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "qrcodegen.h"
-
-/*载入自己的pritnf函数*/
-QRCode_API MyQRCode_API = {
-	.qr_printf = printf,
-};
+#include "stdbool.h"
+#include "stddef.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include "string.h"
+#include "../qrcodegen.h"
 
 char buff[100]={0};
 
@@ -44,7 +39,12 @@ int main(void) {
 	printf("QRCode developers:viys\r\n");
 	printf("Please enter the string to be converted\r\n");
 	scanf("%s",buff);
-	doBasic((const char*)buff);
+
+	// 初始化二维码串口输出
+	qrcode_init(printf);
+	// // 打印二维码
+	qr_doBasic((const char*)buff);
+	
 	system("pause");
 	return EXIT_SUCCESS;
 }
